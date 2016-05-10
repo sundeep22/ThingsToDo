@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="AppSettings" representedClassName="AppSettings" syncable="YES">
+        <attribute name="settingName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="settingValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Tasks" representedClassName="Tasks" syncable="YES">
+        <attribute name="taskCreatedOn" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="taskDeadline" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="taskDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="taskStatusId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="taskTitle" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TaskStatus" syncable="YES">
+        <attribute name="taskStatusDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskStatusId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Tasks" positionX="-261" positionY="-9" width="128" height="135"/>
+        <element name="TaskStatus" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="AppSettings" positionX="-162" positionY="36" width="128" height="75"/>
+    </elements>
+</model>
