@@ -18,12 +18,25 @@ class ViewAThingVC: UIViewController {
     @IBOutlet weak var lblCompleteBy: UILabel!
     
     @IBOutlet weak var btnMarkAsCompletedTask: UIButton!
+    @IBOutlet weak var btnDeleteTask: UIButton!
     
     var SelectedTask: TaskVM?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
+        btnMarkAsCompletedTask.backgroundColor = UIColor.init(red: 0, green: 153/255, blue: 76/255, alpha: 1)
+        btnMarkAsCompletedTask.layer.cornerRadius = 5
+        btnMarkAsCompletedTask.layer.borderWidth = 1
+
+        
+        btnDeleteTask.backgroundColor = UIColor.init(red: 204/255, green: 0, blue: 0, alpha: 1)
+        btnDeleteTask.layer.cornerRadius = 5
+        btnDeleteTask.layer.borderWidth = 1
+
+    
+        //btnMarkAsCompletedTask.layer.borderColor =
+        
         if(SelectedTask!.taskTitle != nil && SelectedTask!.taskTitle != "")
         {
             
@@ -46,9 +59,8 @@ class ViewAThingVC: UIViewController {
     }
 
     @IBAction func btnDeleteTask_Click(sender: UIButton) {
-        
         da.DeleteATask(SelectedTask!);
-        
+        MyNotificationCenter.DeleteNotificationsForTaskVM(SelectedTask!)
         NSNotificationCenter.defaultCenter().postNotificationName("reloadTasks", object: nil)
         navigationController?.popViewControllerAnimated(true)
     }
@@ -56,6 +68,7 @@ class ViewAThingVC: UIViewController {
     @IBAction func btnMarkAsCompletedTask_Click(sender: UIButton) {
         SelectedTask!.taskStatusId = TaskStatusEnum.Completed.rawValue;
         da.UpdateTaskInDB(SelectedTask!);
+        MyNotificationCenter.DeleteNotificationsForTaskVM(SelectedTask!)
         NSNotificationCenter.defaultCenter().postNotificationName("reloadTasks", object: nil)
         navigationController?.popViewControllerAnimated(true)
 

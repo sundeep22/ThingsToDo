@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE2B2D301CE4C998009FC5CC /* MyDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2B2D2F1CE4C998009FC5CC /* MyDatePicker.swift */; };
+		AE5ACCF61CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE5ACCF51CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf */; };
+		AE5BB1CA1CE32F070079F0EA /* GroupedListsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1C91CE32F070079F0EA /* GroupedListsVC.swift */; };
+		AE5BB1CC1CE33D360079F0EA /* TaskGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1CB1CE33D360079F0EA /* TaskGroups.swift */; };
+		AE5BB1CE1CE33DE60079F0EA /* TaskGroupsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1CD1CE33DE60079F0EA /* TaskGroupsVM.swift */; };
+		AE5BB1D01CE33F770079F0EA /* TaskGroupsDA.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1CF1CE33F770079F0EA /* TaskGroupsDA.swift */; };
+		AE5BB1DA1CE3AF330079F0EA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1D91CE3AF330079F0EA /* StringExtension.swift */; };
+		AE5BB1DC1CE430810079F0EA /* AutomaticTaskGroupEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1DB1CE430810079F0EA /* AutomaticTaskGroupEnum.swift */; };
+		AE5BB1DF1CE479880079F0EA /* MyNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1DE1CE479880079F0EA /* MyNotificationCenter.swift */; };
 		AE6373C71CDDD9E900C630EA /* ViewAThingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6373C61CDDD9E900C630EA /* ViewAThingVC.swift */; };
 		AEAA32E11CDD0E0C002ADAAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA32E01CDD0E0C002ADAAD /* AppDelegate.swift */; };
 		AEAA32E31CDD0E0C002ADAAD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA32E21CDD0E0C002ADAAD /* ViewController.swift */; };
@@ -36,6 +45,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE2B2D2F1CE4C998009FC5CC /* MyDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDatePicker.swift; sourceTree = "<group>"; };
+		AE5ACCF51CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DJB My Boyfriends Handwriting.ttf"; sourceTree = "<group>"; };
+		AE5BB1C91CE32F070079F0EA /* GroupedListsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedListsVC.swift; sourceTree = "<group>"; };
+		AE5BB1CB1CE33D360079F0EA /* TaskGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroups.swift; sourceTree = "<group>"; };
+		AE5BB1CD1CE33DE60079F0EA /* TaskGroupsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroupsVM.swift; sourceTree = "<group>"; };
+		AE5BB1CF1CE33F770079F0EA /* TaskGroupsDA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroupsDA.swift; sourceTree = "<group>"; };
+		AE5BB1D91CE3AF330079F0EA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		AE5BB1DB1CE430810079F0EA /* AutomaticTaskGroupEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticTaskGroupEnum.swift; sourceTree = "<group>"; };
+		AE5BB1DE1CE479880079F0EA /* MyNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNotificationCenter.swift; sourceTree = "<group>"; };
 		AE6373C61CDDD9E900C630EA /* ViewAThingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAThingVC.swift; sourceTree = "<group>"; };
 		AEAA32DD1CDD0E0C002ADAAD /* ThingsToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThingsToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEAA32E01CDD0E0C002ADAAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +95,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE2B2D2E1CE4C986009FC5CC /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				AE2B2D2F1CE4C998009FC5CC /* MyDatePicker.swift */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
+		AE5BB1DD1CE479690079F0EA /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				AE5BB1DE1CE479880079F0EA /* MyNotificationCenter.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
 		AEAA32D41CDD0E0C002ADAAD = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +130,8 @@
 		AEAA32DF1CDD0E0C002ADAAD /* ThingsToDo */ = {
 			isa = PBXGroup;
 			children = (
+				AE2B2D2E1CE4C986009FC5CC /* Controls */,
+				AE5BB1DD1CE479690079F0EA /* Notifications */,
 				AEEB87201CE1080800BE71BE /* PreloadData */,
 				AEDD2A921CDE52B20088AD75 /* Assets */,
 				AEDD2A8D1CDE29D00088AD75 /* Helpers */,
@@ -111,6 +147,7 @@
 				AEAA32E71CDD0E0C002ADAAD /* ThingsToDo.xcdatamodeld */,
 				AEAA32FD1CDD1612002ADAAD /* AddAThingVC.swift */,
 				AE6373C61CDDD9E900C630EA /* ViewAThingVC.swift */,
+				AE5BB1C91CE32F070079F0EA /* GroupedListsVC.swift */,
 			);
 			path = ThingsToDo;
 			sourceTree = "<group>";
@@ -120,6 +157,7 @@
 			children = (
 				AEAA32F61CDD102D002ADAAD /* TasksDA.swift */,
 				AEEB871E1CE104BB00BE71BE /* AppSettingsDA.swift */,
+				AE5BB1CF1CE33F770079F0EA /* TaskGroupsDA.swift */,
 			);
 			name = DataAccess;
 			sourceTree = "<group>";
@@ -131,6 +169,8 @@
 				AEEB87131CDFC35400BE71BE /* TaskVM.swift */,
 				AEEB871A1CE1042500BE71BE /* AppSettings.swift */,
 				AEEB871C1CE1047A00BE71BE /* AppSettingVM.swift */,
+				AE5BB1CB1CE33D360079F0EA /* TaskGroups.swift */,
+				AE5BB1CD1CE33DE60079F0EA /* TaskGroupsVM.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -141,6 +181,7 @@
 				AEDD2A871CDE150A0088AD75 /* UIColorExtension.swift */,
 				AEDD2A891CDE24C80088AD75 /* NSDateExtension.swift */,
 				AEDD2A901CDE44170088AD75 /* UIViewControllerExtension.swift */,
+				AE5BB1D91CE3AF330079F0EA /* StringExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -158,6 +199,7 @@
 		AEDD2A921CDE52B20088AD75 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				AE5ACCF51CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf */,
 				AEDD2A991CDE5A350088AD75 /* Bullet_Red.png */,
 				AEDD2A971CDE5A2C0088AD75 /* Bullet_Green.png */,
 				AEDD2A931CDE52DB0088AD75 /* Circle_Orange.png */,
@@ -170,6 +212,7 @@
 			children = (
 				AEDD2A9B1CDE5ED30088AD75 /* TaskStatusEnum.swift */,
 				AEEB87181CE0F3EE00BE71BE /* TaskSortTypes.swift */,
+				AE5BB1DB1CE430810079F0EA /* AutomaticTaskGroupEnum.swift */,
 			);
 			name = Enums;
 			sourceTree = "<group>";
@@ -216,6 +259,11 @@
 					AEAA32DC1CDD0E0C002ADAAD = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 6A5C8PM76C;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -247,6 +295,7 @@
 				AEAA32EE1CDD0E0C002ADAAD /* LaunchScreen.storyboard in Resources */,
 				AEDD2A941CDE52DB0088AD75 /* Circle_Orange.png in Resources */,
 				AEDD2A9A1CDE5A350088AD75 /* Bullet_Red.png in Resources */,
+				AE5ACCF61CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf in Resources */,
 				AEAA32EB1CDD0E0C002ADAAD /* Assets.xcassets in Resources */,
 				AEAA32E61CDD0E0C002ADAAD /* Main.storyboard in Resources */,
 			);
@@ -259,7 +308,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE5BB1DC1CE430810079F0EA /* AutomaticTaskGroupEnum.swift in Sources */,
+				AE5BB1D01CE33F770079F0EA /* TaskGroupsDA.swift in Sources */,
 				AEAA32E31CDD0E0C002ADAAD /* ViewController.swift in Sources */,
+				AE5BB1CE1CE33DE60079F0EA /* TaskGroupsVM.swift in Sources */,
 				AEEB87191CE0F3EE00BE71BE /* TaskSortTypes.swift in Sources */,
 				AEEB87141CDFC35400BE71BE /* TaskVM.swift in Sources */,
 				AEAA32E11CDD0E0C002ADAAD /* AppDelegate.swift in Sources */,
@@ -267,6 +319,7 @@
 				AEDD2A881CDE150A0088AD75 /* UIColorExtension.swift in Sources */,
 				AEAA32E91CDD0E0C002ADAAD /* ThingsToDo.xcdatamodeld in Sources */,
 				AEAA32FA1CDD1056002ADAAD /* Tasks.swift in Sources */,
+				AE5BB1DF1CE479880079F0EA /* MyNotificationCenter.swift in Sources */,
 				AEEB87231CE10BCC00BE71BE /* PreloadData.swift in Sources */,
 				AEDD2A8A1CDE24C80088AD75 /* NSDateExtension.swift in Sources */,
 				AEEB871F1CE104BB00BE71BE /* AppSettingsDA.swift in Sources */,
@@ -276,7 +329,11 @@
 				AEDD2A911CDE44170088AD75 /* UIViewControllerExtension.swift in Sources */,
 				AEEB871D1CE1047A00BE71BE /* AppSettingVM.swift in Sources */,
 				AEAA32FE1CDD1612002ADAAD /* AddAThingVC.swift in Sources */,
+				AE5BB1CA1CE32F070079F0EA /* GroupedListsVC.swift in Sources */,
+				AE2B2D301CE4C998009FC5CC /* MyDatePicker.swift in Sources */,
+				AE5BB1DA1CE3AF330079F0EA /* StringExtension.swift in Sources */,
 				AEEB871B1CE1042500BE71BE /* AppSettings.swift in Sources */,
+				AE5BB1CC1CE33D360079F0EA /* TaskGroups.swift in Sources */,
 				AEDD2A9C1CDE5ED30088AD75 /* TaskStatusEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

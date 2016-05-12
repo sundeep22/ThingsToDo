@@ -12,15 +12,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     let showOnlyPendingTasks = true;
     
+    var currentTaskGroup =  TaskGroupsVM?()
+    var automaticTaskGroup: AutomaticTaskGroupEnum? = nil
+    
     @IBOutlet weak var txtFieldSearchTasks: UITextField!
     @IBOutlet weak var uiSwitchShowCompleted: UISwitch!
     let da: TasksDA = TasksDA();
+    let groupsDA = TaskGroupsDA();
     let appSettingsDA = AppSettingsDA()
     var allTasks = [TaskVM]();
     var filteredTasks = [TaskVM]()
     let searchController = UISearchController(searchResultsController: nil)
     
     @IBOutlet weak var tblViewTasks: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("View Did Load")
+        
+        print("Received \(currentTaskGroup)")
+        
+        self.SetShowCompletedTasksSwitch()
+        
+        self.allTasks = self.GetTasks(TaskSortTypes.DateCreatedDescending, filter: "")
+        
+        self.tblViewTasks.rowHeight = 70.0
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        definesPresentationContext = true
+        tblViewTasks.tableHeaderView = searchController.searchBar
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.loadList(_:)),name:"loadTasks", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reloadList(_:)),name:"reloadTasks", object: nil)
+    }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,6 +118,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             targetController.SelectedTask = currentItem;
         
         }
+        else if(segue.identifier == "segueToAddTask")
+        {
+            let targetController = (segue.destinationViewController as! AddAThingVC)
+            
+            targetController.taskGroup = currentTaskGroup;
+        }
         
     }
     
@@ -103,6 +134,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func DeleteTaskAndRefreshTable(taskVM: TaskVM)
     {
         da.DeleteATask(taskVM);
+        MyNotificationCenter.DeleteNotificationsForTaskVM(taskVM)
         allTasks = self.GetTasks(TaskSortTypes.DateCreatedDescending, filter: "")
         filterContentForSearchText(searchController.searchBar.text!)
     }
@@ -112,6 +144,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         var taskVM = taskVM;
         taskVM.taskStatusId = TaskStatusEnum.Completed.rawValue;
         self.da.UpdateTaskInDB(taskVM);
+        MyNotificationCenter.DeleteNotificationsForTaskVM(taskVM)
         allTasks = self.GetTasks(TaskSortTypes.DateCreatedDescending, filter: "")
         filterContentForSearchText(searchController.searchBar.text!)
     }
@@ -172,9 +205,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let newCell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "taskTableCell");
         newCell.detailTextLabel?.textColor = UIColor.darkGrayColor()
-        newCell.textLabel?.textColor = UIColor.darkGrayColor()
-        newCell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0);
-        
+        newCell.textLabel?.textColor = UIColor.redColor()
+        //newCell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0);
+        newCell.textLabel?.font = UIFont(name: "DJBMyBoyfriend'sHandwriting", size: 20.0)
         
         let taskDetail: TaskVM
         if searchController.active && searchController.searchBar.text != "" {
@@ -269,29 +302,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("View Did Load")
-        
-        self.SetShowCompletedTasksSwitch()
-        self.allTasks = self.GetTasks(TaskSortTypes.DateCreatedDescending, filter: "")
-        self.tblViewTasks.rowHeight = 70.0
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        
-        definesPresentationContext = true
-        tblViewTasks.tableHeaderView = searchController.searchBar
-        
-        
-
-
-//        uiSwitchShowCompleted.transform = CGAffineTransformMakeScale(0.75, 0.75);
-        
-        
-    
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.loadList(_:)),name:"loadTasks", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reloadList(_:)),name:"reloadTasks", object: nil)
-    }
+   
     
     @IBAction func View_TouchDown(sender: UIView) {
         print("View Touched");
@@ -317,28 +328,87 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func GetTasks(sortOrder: TaskSortTypes, filter: String) -> [TaskVM]
     {
+        if automaticTaskGroup == nil && currentTaskGroup != nil
+        {
         
-        
-        if sortOrder == .DateCreatedDescending && uiSwitchShowCompleted.on
-        {
-            return self.da.GetAllTasks().sort({ ($0.taskCreatedOn?.isGreaterThanDate($1.taskCreatedOn!))! })
+            if sortOrder == .DateCreatedDescending && uiSwitchShowCompleted.on
+            {
+                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!).sort({ ($0.taskCreatedOn?.isGreaterThanDate($1.taskCreatedOn!))! })
+            }
+            else if sortOrder == .DateCreatedDescending && !uiSwitchShowCompleted.on
+            {
+                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!).filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).sort({ ($0.taskCreatedOn?.isGreaterThanDate($1.taskCreatedOn!))! })
+            }
+            else if sortOrder == .DateCreatedAscending
+            {
+                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!).sort({ ($0.taskCreatedOn?.isLessThanDate($1.taskCreatedOn!))! })
+            }
+            else
+            {
+                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!);
+            }
         }
-        else if sortOrder == .DateCreatedDescending && !uiSwitchShowCompleted.on
+        else if automaticTaskGroup != nil
         {
-            return self.da.GetAllTasks().filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).sort({ ($0.taskCreatedOn?.isGreaterThanDate($1.taskCreatedOn!))! })
+            if automaticTaskGroup == AutomaticTaskGroupEnum.TodaysTasks
+            {
+                let today = NSDate()
+                let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+                let startTime = cal.startOfDayForDate(today)
+                let endTime = cal.dateBySettingHour(23, minute: 59, second: 59, ofDate: today, options: NSCalendarOptions.MatchNextTime)
+                
+                if(uiSwitchShowCompleted.on)
+                {
+                    return self.da.GetAllTasks().filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                }
+                else
+                {
+                   return self.da.GetAllTasks().filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                }
+            }
+            else if automaticTaskGroup == AutomaticTaskGroupEnum.TomorrowsTasks
+            {
+                
+                let date = NSDate()
+                let tomorrow = date.dateByAddingTimeInterval(24 * 60 * 60)
+                let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+                
+                let startTime = cal.startOfDayForDate(tomorrow)
+                let endTime = cal.dateBySettingHour(23, minute: 59, second: 59, ofDate: tomorrow, options: NSCalendarOptions.MatchNextTime)
+                
+                if(uiSwitchShowCompleted.on)
+                {
+                    return self.da.GetAllTasks().filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                }
+                else
+                {
+                     return self.da.GetAllTasks().filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                }
+            }
+            else if automaticTaskGroup == AutomaticTaskGroupEnum.ThisWeeksTasks
+            {
+                let startDate = MyUIHelper.get(.Previous, "Sunday", considerToday: true)
+                let endDate = MyUIHelper.get(.Next, "Saturday", considerToday: true)
+                
+                let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+                
+                let startTime = cal.startOfDayForDate(startDate)
+                let endTime = cal.dateBySettingHour(23, minute: 59, second: 59, ofDate: endDate, options: NSCalendarOptions.MatchNextTime)
+                
+                if(uiSwitchShowCompleted.on)
+                {
+                    return self.da.GetAllTasks().filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                }
+                else
+                {
+                    return self.da.GetAllTasks().filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                }
+            }
         }
-        else if sortOrder == .DateCreatedAscending
-        {
-            return self.da.GetAllTasks().sort({ ($0.taskCreatedOn?.isLessThanDate($1.taskCreatedOn!))! })
-        }
-        else
-        {
-            return self.da.GetAllTasks()
-        }
+        return [TaskVM]()
+    
     
     }
-    
-
 
 }
 
@@ -347,4 +417,3 @@ extension ViewController: UISearchResultsUpdating {
         filterContentForSearchText(searchController.searchBar.text!)
     }
 }
-

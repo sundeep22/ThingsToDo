@@ -31,8 +31,11 @@ struct TasksDA
         print("Update Task In DB Called..");
         let managedContext = self.appDelegate.managedObjectContext
         let task = managedContext.objectWithID(taskVM.objectID as! NSManagedObjectID) as! Tasks
-        task.taskStatusId = taskVM.taskStatusId
         
+        task.taskTitle = taskVM.taskTitle
+        task.taskDescription = taskVM.taskDescription
+        task.taskDeadline = taskVM.taskDeadline
+        task.taskStatusId = taskVM.taskStatusId
         do {
             try managedContext.save()
             print("Congratulations!!")
@@ -45,7 +48,7 @@ struct TasksDA
     }
     
 
-    func StoreTaskInDB(taskVM: TaskVM) -> Bool
+    func StoreTaskInDB(taskVM: TaskVM) -> NSManagedObjectID
     {
         print("Store Task In DB Called..");
         
@@ -60,8 +63,7 @@ struct TasksDA
             print("Could not save \(error), \(error.userInfo)")
         }
         
-        return true;
-        
+        return task.objectID
     }
     
     func GetAllTasksOrderByDateCreated() -> [Tasks]

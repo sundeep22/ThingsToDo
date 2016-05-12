@@ -28,9 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.setBool(true, forKey: "isPreloaded")
         }
         
-        
-        
-        
+        application.registerUserNotificationSettings(
+            UIUserNotificationSettings(
+                forTypes: [.Alert, .Badge, .Sound],
+                categories: nil))
+        print("App Loaded")
         return true
     }
 

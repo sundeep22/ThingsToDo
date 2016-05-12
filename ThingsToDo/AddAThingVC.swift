@@ -11,8 +11,9 @@ import UIKit
 class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
     let da: TasksDA = TasksDA();
+    let taskGroupDA = TaskGroupsDA();
+    var taskGroup = TaskGroupsVM?()
     
-
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var txtBoxTitle: UITextField!
     @IBOutlet weak var txtViewDescription: UITextView!
@@ -20,6 +21,7 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.hideKeyboardWhenTappedAround()
         txtViewDescription.delegate = self
         txtBoxTitle.delegate = self
@@ -34,7 +36,12 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
-
+//    @IBAction func datePickerTapped(sender: AnyObject) {
+//        DatePickerDialog().show("DatePickerDialog", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .Date) {
+//            (date) -> Void in
+//            self.txtBoxCompleteBy.text = "\(date)"
+//        }
+//    }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "\n"
@@ -95,19 +102,22 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
         print("trying to store")
         var currentTask = TaskVM()
         
-        currentTask.taskId = 0;
         currentTask.taskTitle = txtBoxTitle.text;
         currentTask.taskDescription = txtViewDescription.text;
         currentTask.taskDeadline = dtPickerCompleteBy.date;
         currentTask.taskStatusId = TaskStatusEnum.Pending.rawValue;
         currentTask.taskCreatedOn = NSDate();
-    
+        
+        if(taskGroup != nil)
+        {
+            currentTask.taskGroup = taskGroup;
+        }
         let validationResults = currentTask.validateTaskVM();
         
         if validationResults.valid
         {
-            
-            da.StoreTaskInDB(currentTask);
+            currentTask.objectID = da.StoreTaskInDB(currentTask);
+            MyNotificationCenter.AddNotificationForTaskVM(currentTask);
             NSNotificationCenter.defaultCenter().postNotificationName("loadTasks", object: nil)
             navigationController?.popViewControllerAnimated(true)
         }
