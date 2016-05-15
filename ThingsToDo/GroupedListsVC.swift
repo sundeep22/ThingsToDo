@@ -146,9 +146,9 @@ class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
-        header.contentView.backgroundColor = MyUIHelper.CreateUIColorFromCodes(25, green: 123, blue: 189, alpha: 1)
+        header.contentView.backgroundColor = MyUIHelper.CreateUIColorFromCodes(27, green: 73, blue: 101, alpha: 1.0)
         header.textLabel!.textColor = UIColor.whiteColor() //make the text white
-        header.alpha = 0.8 //make the header transparent
+        //header.alpha = 0.8 //make the header transparent
     }
     
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
@@ -174,7 +174,7 @@ class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelega
 //        cell.textLabel?.font = UIFont(name: "DJBMyBoyfriend'sHandwriting", size: 30.0)
         
         //cell.imageStatusColor!.image = UIImage(named: "blueBar.png")
-        cell.imageStar!.image = UIImage(named: "starLit.png")
+        
         
         //cell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0);
         
@@ -198,16 +198,23 @@ class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelega
             
         if indexPath.section == 0
         {
+            cell.imageStar!.image = UIImage(named: "starLit.png")
             //cell.imageView!.image = UIImage(named: "blueBar.png")
             cell.lblTitle.text = staticRows[indexPath.row]
             if(indexPath.row == 0)
             {
-                cell.taskStatusIndicator.backgroundColor = MyUIHelper.CreateUIColorFromCodes(178, green: 49, blue: 83, alpha: 1)
+                cell.taskStatusIndicator.backgroundColor = MyUIHelper.CreateUIColorFromCodes(209, green: 73, blue: 91, alpha: 1)
             }
             else if(indexPath.row == 1)
             {
-                cell.taskStatusIndicator.backgroundColor = MyUIHelper.CreateUIColorFromCodes(255, green: 107, blue: 95, alpha: 1)
+                cell.taskStatusIndicator.backgroundColor = MyUIHelper.CreateUIColorFromCodes(237, green: 174, blue: 73, alpha: 1)
             }
+            else if(indexPath.row == 2)
+            {
+                cell.taskStatusIndicator.backgroundColor = MyUIHelper.CreateUIColorFromCodes(176, green: 219, blue: 67, alpha: 1)
+            }
+            
+            
         }
         else if indexPath.section == 1
         {

@@ -64,7 +64,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0
         {
-            return "All Tasks";
+            return currentTaskGroup?.taskGroupName;
         }
         else
         {
@@ -80,6 +80,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tblViewTasks.deselectRowAtIndexPath(indexPath, animated: true)
         
     }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
+        header.contentView.backgroundColor = MyUIHelper.CreateUIColorFromCodes(27, green: 73, blue: 101, alpha: 1.0)
+        header.textLabel!.textColor = UIColor.whiteColor() //make the text white
+        //header.alpha = 0.8 //make the header transparent
+    }
+
     
     
     @IBAction func showCompleted_ValueChanged(sender: UISwitch) {
