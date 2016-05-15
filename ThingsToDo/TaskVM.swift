@@ -18,6 +18,7 @@ struct TaskVM
     var taskCreatedOn: NSDate?;
     var objectID: AnyObject?
     var uniqueIdentifier: String?;
+    var isStarred: Int32;
     var taskGroup: TaskGroupsVM?
     
     init(taskId: Int32, taskGroupId: Int32, taskTitle: String?, taskDescription: String?, taskDeadline: NSDate?, taskStatusId: Int32, taskCreatedOn: NSDate?)
@@ -27,6 +28,7 @@ struct TaskVM
         self.taskDescription = taskDescription;
         self.taskDeadline = taskDeadline;
         self.taskCreatedOn = taskCreatedOn;
+        self.isStarred = 0
         self.uniqueIdentifier = NSUUID().UUIDString
         self.objectID = nil;
     }
@@ -36,6 +38,7 @@ struct TaskVM
         self.uniqueIdentifier = NSUUID().UUIDString
         self.taskStatusId = TaskStatusEnum.Pending.rawValue;
         self.objectID = nil;
+        self.isStarred = 0
     }
     
     
@@ -68,6 +71,7 @@ struct TaskVM
         entityTask.taskDeadline = self.taskDeadline
         entityTask.taskCreatedOn = self.taskCreatedOn
         entityTask.uniqueIdentifier = self.uniqueIdentifier
+        entityTask.isStarred = self.isStarred
         
         if(self.taskGroup != nil)
         {
@@ -88,7 +92,7 @@ struct TaskVM
         entityTask.taskDeadline = taskVM.taskDeadline
         entityTask.taskCreatedOn = taskVM.taskCreatedOn
         entityTask.uniqueIdentifier = taskVM.uniqueIdentifier
-
+        entityTask.isStarred = taskVM.isStarred
         
         if(self.taskGroup != nil)
         {
@@ -97,6 +101,7 @@ struct TaskVM
         
         return entityTask;
     }
+    
     
     static func CreateTaskVMForTaskEntity(taskEntity: Tasks) -> TaskVM
     {
@@ -108,6 +113,7 @@ struct TaskVM
         taskVM.taskDeadline = taskEntity.taskDeadline
         taskVM.taskCreatedOn = taskEntity.taskCreatedOn
         taskVM.uniqueIdentifier = taskEntity.uniqueIdentifier
+        taskVM.isStarred = taskEntity.isStarred
         taskVM.objectID = taskEntity.objectID
        
         return taskVM

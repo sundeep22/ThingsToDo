@@ -121,6 +121,47 @@ struct TasksDA
         return allTasks;
     }
     
+    func GetTaskByUniqueID(uniqueID: String) -> Tasks
+    {
+        var task = Tasks?();
+        
+        let managedContext = self.appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Tasks")
+        
+        fetchRequest.predicate = NSPredicate(format: "uniqueIdentifier = %@", uniqueID)
+        
+        do {
+            let results = try managedContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            print(results)
+            
+            if(results.count > 0)
+            {
+                task = results[0] as? Tasks;
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        return task!;
+    }
+    
+    func SetStarValueToTask(uniqueID: String, starred: Int32)
+    {
+        let task = GetTaskByUniqueID(uniqueID)
+        
+        let managedContext = self.appDelegate.managedObjectContext
+        
+        task.isStarred = starred
+        
+        do {
+            try managedContext.save()
+            print("Congratulations!!")
+            
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+    }
+    
     func DeleteATask(taskToDelete: TaskVM)
     {
         let managedContext = self.appDelegate.managedObjectContext

@@ -15,6 +15,7 @@ struct TaskGroupsVM
     var taskGroupName: String?
     var dateCreated: NSDate?
     var uniqueIdentifier: String?;
+    var isStarred: NSNumber?;
     var objectID: AnyObject?
     
     init()

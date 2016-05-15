@@ -25,17 +25,17 @@ class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     override func viewDidLoad() {
+//        self.tblViewTaskGroups.registerClass(UITableViewCell.self, forCellReuseIdentifier: "taskGroup")
+////        self.tblViewTaskGroups.registerNib(UINib(nibName: "GroupDisplayCell", bundle: nil), forCellReuseIdentifier: "taskGroup")
+        
+//        self.navigationController?.navigationBar.translucent = true
+//        self.navigationController?.navigationBar.barTintColor = MyUIHelper.CreateUIColorFromCodes(0, green: 84, blue: 138, alpha: 1.0)
+//    
+        
+        self.tblViewTaskGroups.dataSource = self;
+        self.tblViewTaskGroups.delegate = self;
         
         super.viewDidLoad()
-        for family: String in UIFont.familyNames()
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNamesForFamilyName(family)
-            {
-                print("== \(names)")
-            }
-        }
-        
         RefreshAllTaskGroups();
         }
 
@@ -146,7 +146,7 @@ class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColor(red:51/255, green: 51/255, blue: 51/255, alpha: 1.0) //make the background color light blue
+        header.contentView.backgroundColor = MyUIHelper.CreateUIColorFromCodes(25, green: 123, blue: 189, alpha: 1)
         header.textLabel!.textColor = UIColor.whiteColor() //make the text white
         header.alpha = 0.8 //make the header transparent
     }
@@ -166,29 +166,55 @@ class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelega
 //        let cell = tableView.dequeueReusableCellWithIdentifier("taskGroup", forIndexPath: indexPath)
 
         
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "taskGroup");
-        //let cell = tableView.dequeueReusableCellWithIdentifier("taskGroup")!
-        cell.detailTextLabel?.textColor = UIColor.darkGrayColor()
-        cell.textLabel?.textColor = UIColor.darkGrayColor()
-        cell.textLabel?.font = UIFont(name: "DJBMyBoyfriend'sHandwriting", size: 30.0)
+        //let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "taskGroup");
+        let cell = self.tblViewTaskGroups.dequeueReusableCellWithIdentifier("taskGroup", forIndexPath: indexPath) as! GroupDisplayCell
+//    
+//        cell.detailTextLabel?.textColor = UIColor.darkGrayColor()
+//        cell.textLabel?.textColor = UIColor.darkGrayColor()
+//        cell.textLabel?.font = UIFont(name: "DJBMyBoyfriend'sHandwriting", size: 30.0)
+        
+        //cell.imageStatusColor!.image = UIImage(named: "blueBar.png")
+        cell.imageStar!.image = UIImage(named: "starLit.png")
         
         //cell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0);
         
-        if (indexPath.row % 2 == 0)
-        {
-            cell.backgroundColor = colorForIndex(indexPath.row)
-        } else {
-            cell.backgroundColor = UIColor.whiteColor()
-        }
+//        if (indexPath.row % 2 == 0)
+//        {
+//            cell.backgroundColor = colorForIndex(indexPath.row)
+//        } else {
+//            cell.backgroundColor = UIColor.whiteColor()
+//        }
         
         
+//        if indexPath.section == 0
+//        {
+//            //cell.imageView!.image = UIImage(named: "blueBar.png")
+//            cell.textLabel!.text = staticRows[indexPath.row]        }
+//        else if indexPath.section == 1
+//        {
+//            cell.textLabel!.text = allTaskGroups[indexPath.row].taskGroupName
+//        }
+
+            
         if indexPath.section == 0
         {
-            cell.textLabel!.text = staticRows[indexPath.row]        }
+            //cell.imageView!.image = UIImage(named: "blueBar.png")
+            cell.lblTitle.text = staticRows[indexPath.row]
+            if(indexPath.row == 0)
+            {
+                cell.taskStatusIndicator.backgroundColor = MyUIHelper.CreateUIColorFromCodes(178, green: 49, blue: 83, alpha: 1)
+            }
+            else if(indexPath.row == 1)
+            {
+                cell.taskStatusIndicator.backgroundColor = MyUIHelper.CreateUIColorFromCodes(255, green: 107, blue: 95, alpha: 1)
+            }
+        }
         else if indexPath.section == 1
         {
-            cell.textLabel!.text = allTaskGroups[indexPath.row].taskGroupName
+            cell.lblTitle.text = allTaskGroups[indexPath.row].taskGroupName
         }
+
+        
         return cell;
         
     }

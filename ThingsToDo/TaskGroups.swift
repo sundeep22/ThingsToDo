@@ -14,5 +14,6 @@ class TaskGroups : NSManagedObject {
     @NSManaged var taskGroupName: String?
     @NSManaged var dateCreated: NSDate?
     @NSManaged var uniqueIdentifier: String?;
+    @NSManaged var isStarred: NSNumber?;
     @NSManaged var tasks: NSSet?
 }

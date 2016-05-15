@@ -22,7 +22,7 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.hideKeyboardWhenTappedAround()
+        //self.hideKeyboardWhenTappedAround()
         txtViewDescription.delegate = self
         txtBoxTitle.delegate = self
         txtViewDescription.text = "Task Desciption (Optional)"
@@ -106,6 +106,7 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
         currentTask.taskDescription = txtViewDescription.text;
         currentTask.taskDeadline = dtPickerCompleteBy.date;
         currentTask.taskStatusId = TaskStatusEnum.Pending.rawValue;
+        currentTask.isStarred = 0
         currentTask.taskCreatedOn = NSDate();
         
         if(taskGroup != nil)

@@ -6,11 +6,13 @@
     </entity>
     <entity name="TaskGroups" representedClassName="TaskGroups" syncable="YES">
         <attribute name="dateCreated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isStarred" optional="YES" attributeType="Integer 32" syncable="YES"/>
         <attribute name="taskGroupName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tasks" inverseName="taskGroup" inverseEntity="Tasks" syncable="YES"/>
     </entity>
     <entity name="Tasks" representedClassName="Tasks" syncable="YES">
+        <attribute name="isStarred" optional="YES" attributeType="Integer 32" syncable="YES"/>
         <attribute name="taskCreatedOn" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="taskDeadline" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="taskDescription" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,14 +21,14 @@
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="taskGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskGroups" inverseName="tasks" inverseEntity="TaskGroups" syncable="YES"/>
     </entity>
-    <entity name="TaskStatus" syncable="YES">
+    <entity name="TaskStatus" representedClassName=".TaskStatus" syncable="YES">
         <attribute name="taskStatusDesc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="taskStatusId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
         <element name="AppSettings" positionX="-162" positionY="36" width="128" height="75"/>
-        <element name="TaskGroups" positionX="-162" positionY="36" width="128" height="105"/>
-        <element name="Tasks" positionX="-261" positionY="-9" width="128" height="150"/>
+        <element name="TaskGroups" positionX="-162" positionY="36" width="128" height="120"/>
+        <element name="Tasks" positionX="-261" positionY="-9" width="128" height="165"/>
         <element name="TaskStatus" positionX="-63" positionY="-18" width="128" height="73"/>
     </elements>
 </model>

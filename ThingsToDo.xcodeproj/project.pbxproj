@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		AE2B2D301CE4C998009FC5CC /* MyDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2B2D2F1CE4C998009FC5CC /* MyDatePicker.swift */; };
 		AE5ACCF61CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE5ACCF51CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf */; };
+		AE5ACCFD1CE4F03B00038A11 /* blueBar.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5ACCF71CE4F03B00038A11 /* blueBar.png */; };
+		AE5ACCFE1CE4F03B00038A11 /* greenBar.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5ACCF81CE4F03B00038A11 /* greenBar.png */; };
+		AE5ACCFF1CE4F03B00038A11 /* orangeBar.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5ACCF91CE4F03B00038A11 /* orangeBar.png */; };
+		AE5ACD001CE4F03B00038A11 /* redBar.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5ACCFA1CE4F03B00038A11 /* redBar.png */; };
+		AE5ACD041CE4F4C200038A11 /* GroupDisplayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5ACD031CE4F4C200038A11 /* GroupDisplayCell.swift */; };
 		AE5BB1CA1CE32F070079F0EA /* GroupedListsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1C91CE32F070079F0EA /* GroupedListsVC.swift */; };
 		AE5BB1CC1CE33D360079F0EA /* TaskGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1CB1CE33D360079F0EA /* TaskGroups.swift */; };
 		AE5BB1CE1CE33DE60079F0EA /* TaskGroupsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1CD1CE33DE60079F0EA /* TaskGroupsVM.swift */; };
@@ -17,6 +22,11 @@
 		AE5BB1DC1CE430810079F0EA /* AutomaticTaskGroupEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1DB1CE430810079F0EA /* AutomaticTaskGroupEnum.swift */; };
 		AE5BB1DF1CE479880079F0EA /* MyNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BB1DE1CE479880079F0EA /* MyNotificationCenter.swift */; };
 		AE6373C71CDDD9E900C630EA /* ViewAThingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6373C61CDDD9E900C630EA /* ViewAThingVC.swift */; };
+		AE6B2AD51CE6610600E47554 /* dark roast.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE6B2AD41CE660F500E47554 /* dark roast.ttf */; };
+		AE6B2AD91CE74E3100E47554 /* Chocolate Covered Raindrops BOLD.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE6B2AD61CE74E3100E47554 /* Chocolate Covered Raindrops BOLD.ttf */; };
+		AE6B2ADB1CE74E3100E47554 /* Chocolate Covered Raindrops.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE6B2AD81CE74E3100E47554 /* Chocolate Covered Raindrops.ttf */; };
+		AE6BADB01CE755BD0058979F /* TaskDisplayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BADAF1CE755BD0058979F /* TaskDisplayCell.swift */; };
+		AE6BADBC1CE7977B0058979F /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BADBB1CE7977B0058979F /* Tasks.swift */; };
 		AEAA32E11CDD0E0C002ADAAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA32E01CDD0E0C002ADAAD /* AppDelegate.swift */; };
 		AEAA32E31CDD0E0C002ADAAD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA32E21CDD0E0C002ADAAD /* ViewController.swift */; };
 		AEAA32E61CDD0E0C002ADAAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEAA32E41CDD0E0C002ADAAD /* Main.storyboard */; };
@@ -24,8 +34,10 @@
 		AEAA32EB1CDD0E0C002ADAAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEAA32EA1CDD0E0C002ADAAD /* Assets.xcassets */; };
 		AEAA32EE1CDD0E0C002ADAAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEAA32EC1CDD0E0C002ADAAD /* LaunchScreen.storyboard */; };
 		AEAA32F71CDD102D002ADAAD /* TasksDA.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA32F61CDD102D002ADAAD /* TasksDA.swift */; };
-		AEAA32FA1CDD1056002ADAAD /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA32F91CDD1056002ADAAD /* Tasks.swift */; };
+		AEAA32FA1CDD1056002ADAAD /* TasksExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA32F91CDD1056002ADAAD /* TasksExtension.swift */; };
 		AEAA32FE1CDD1612002ADAAD /* AddAThingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA32FD1CDD1612002ADAAD /* AddAThingVC.swift */; };
+		AECEF4BC1CE866D1005C770C /* starDull.png in Resources */ = {isa = PBXBuildFile; fileRef = AECEF4BA1CE866D1005C770C /* starDull.png */; };
+		AECEF4BD1CE866D1005C770C /* starLit.png in Resources */ = {isa = PBXBuildFile; fileRef = AECEF4BB1CE866D1005C770C /* starLit.png */; };
 		AEDD2A881CDE150A0088AD75 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD2A871CDE150A0088AD75 /* UIColorExtension.swift */; };
 		AEDD2A8A1CDE24C80088AD75 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD2A891CDE24C80088AD75 /* NSDateExtension.swift */; };
 		AEDD2A8F1CDE29FA0088AD75 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD2A8E1CDE29FA0088AD75 /* Helper.swift */; };
@@ -47,6 +59,11 @@
 /* Begin PBXFileReference section */
 		AE2B2D2F1CE4C998009FC5CC /* MyDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDatePicker.swift; sourceTree = "<group>"; };
 		AE5ACCF51CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DJB My Boyfriends Handwriting.ttf"; sourceTree = "<group>"; };
+		AE5ACCF71CE4F03B00038A11 /* blueBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueBar.png; sourceTree = "<group>"; };
+		AE5ACCF81CE4F03B00038A11 /* greenBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenBar.png; sourceTree = "<group>"; };
+		AE5ACCF91CE4F03B00038A11 /* orangeBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeBar.png; sourceTree = "<group>"; };
+		AE5ACCFA1CE4F03B00038A11 /* redBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redBar.png; sourceTree = "<group>"; };
+		AE5ACD031CE4F4C200038A11 /* GroupDisplayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDisplayCell.swift; sourceTree = "<group>"; };
 		AE5BB1C91CE32F070079F0EA /* GroupedListsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedListsVC.swift; sourceTree = "<group>"; };
 		AE5BB1CB1CE33D360079F0EA /* TaskGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroups.swift; sourceTree = "<group>"; };
 		AE5BB1CD1CE33DE60079F0EA /* TaskGroupsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroupsVM.swift; sourceTree = "<group>"; };
@@ -55,6 +72,11 @@
 		AE5BB1DB1CE430810079F0EA /* AutomaticTaskGroupEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticTaskGroupEnum.swift; sourceTree = "<group>"; };
 		AE5BB1DE1CE479880079F0EA /* MyNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNotificationCenter.swift; sourceTree = "<group>"; };
 		AE6373C61CDDD9E900C630EA /* ViewAThingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAThingVC.swift; sourceTree = "<group>"; };
+		AE6B2AD41CE660F500E47554 /* dark roast.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dark roast.ttf"; sourceTree = "<group>"; };
+		AE6B2AD61CE74E3100E47554 /* Chocolate Covered Raindrops BOLD.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chocolate Covered Raindrops BOLD.ttf"; sourceTree = "<group>"; };
+		AE6B2AD81CE74E3100E47554 /* Chocolate Covered Raindrops.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chocolate Covered Raindrops.ttf"; sourceTree = "<group>"; };
+		AE6BADAF1CE755BD0058979F /* TaskDisplayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDisplayCell.swift; sourceTree = "<group>"; };
+		AE6BADBB1CE7977B0058979F /* Tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
 		AEAA32DD1CDD0E0C002ADAAD /* ThingsToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThingsToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEAA32E01CDD0E0C002ADAAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEAA32E21CDD0E0C002ADAAD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,8 +86,10 @@
 		AEAA32ED1CDD0E0C002ADAAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AEAA32EF1CDD0E0C002ADAAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEAA32F61CDD102D002ADAAD /* TasksDA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksDA.swift; sourceTree = "<group>"; };
-		AEAA32F91CDD1056002ADAAD /* Tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
+		AEAA32F91CDD1056002ADAAD /* TasksExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksExtension.swift; sourceTree = "<group>"; };
 		AEAA32FD1CDD1612002ADAAD /* AddAThingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAThingVC.swift; sourceTree = "<group>"; };
+		AECEF4BA1CE866D1005C770C /* starDull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starDull.png; sourceTree = "<group>"; };
+		AECEF4BB1CE866D1005C770C /* starLit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starLit.png; sourceTree = "<group>"; };
 		AEDD2A871CDE150A0088AD75 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		AEDD2A891CDE24C80088AD75 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		AEDD2A8E1CDE29FA0088AD75 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -99,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				AE2B2D2F1CE4C998009FC5CC /* MyDatePicker.swift */,
+				AE5ACD031CE4F4C200038A11 /* GroupDisplayCell.swift */,
+				AE6BADAF1CE755BD0058979F /* TaskDisplayCell.swift */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -139,12 +165,12 @@
 				AEAA32F81CDD1041002ADAAD /* Models */,
 				AEAA32F51CDD1016002ADAAD /* DataAccess */,
 				AEAA32E01CDD0E0C002ADAAD /* AppDelegate.swift */,
-				AEAA32E21CDD0E0C002ADAAD /* ViewController.swift */,
 				AEAA32E41CDD0E0C002ADAAD /* Main.storyboard */,
 				AEAA32EA1CDD0E0C002ADAAD /* Assets.xcassets */,
 				AEAA32EC1CDD0E0C002ADAAD /* LaunchScreen.storyboard */,
 				AEAA32EF1CDD0E0C002ADAAD /* Info.plist */,
 				AEAA32E71CDD0E0C002ADAAD /* ThingsToDo.xcdatamodeld */,
+				AEAA32E21CDD0E0C002ADAAD /* ViewController.swift */,
 				AEAA32FD1CDD1612002ADAAD /* AddAThingVC.swift */,
 				AE6373C61CDDD9E900C630EA /* ViewAThingVC.swift */,
 				AE5BB1C91CE32F070079F0EA /* GroupedListsVC.swift */,
@@ -165,7 +191,8 @@
 		AEAA32F81CDD1041002ADAAD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AEAA32F91CDD1056002ADAAD /* Tasks.swift */,
+				AEAA32F91CDD1056002ADAAD /* TasksExtension.swift */,
+				AE6BADBB1CE7977B0058979F /* Tasks.swift */,
 				AEEB87131CDFC35400BE71BE /* TaskVM.swift */,
 				AEEB871A1CE1042500BE71BE /* AppSettings.swift */,
 				AEEB871C1CE1047A00BE71BE /* AppSettingVM.swift */,
@@ -199,6 +226,15 @@
 		AEDD2A921CDE52B20088AD75 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				AECEF4BA1CE866D1005C770C /* starDull.png */,
+				AECEF4BB1CE866D1005C770C /* starLit.png */,
+				AE6B2AD61CE74E3100E47554 /* Chocolate Covered Raindrops BOLD.ttf */,
+				AE6B2AD81CE74E3100E47554 /* Chocolate Covered Raindrops.ttf */,
+				AE6B2AD41CE660F500E47554 /* dark roast.ttf */,
+				AE5ACCF71CE4F03B00038A11 /* blueBar.png */,
+				AE5ACCF81CE4F03B00038A11 /* greenBar.png */,
+				AE5ACCF91CE4F03B00038A11 /* orangeBar.png */,
+				AE5ACCFA1CE4F03B00038A11 /* redBar.png */,
 				AE5ACCF51CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf */,
 				AEDD2A991CDE5A350088AD75 /* Bullet_Red.png */,
 				AEDD2A971CDE5A2C0088AD75 /* Bullet_Green.png */,
@@ -290,12 +326,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE6B2AD51CE6610600E47554 /* dark roast.ttf in Resources */,
 				AEEB87241CE1107000BE71BE /* AppSettings.json in Resources */,
+				AE5ACCFE1CE4F03B00038A11 /* greenBar.png in Resources */,
 				AEDD2A981CDE5A2C0088AD75 /* Bullet_Green.png in Resources */,
 				AEAA32EE1CDD0E0C002ADAAD /* LaunchScreen.storyboard in Resources */,
+				AECEF4BD1CE866D1005C770C /* starLit.png in Resources */,
+				AE5ACCFF1CE4F03B00038A11 /* orangeBar.png in Resources */,
+				AE5ACCFD1CE4F03B00038A11 /* blueBar.png in Resources */,
 				AEDD2A941CDE52DB0088AD75 /* Circle_Orange.png in Resources */,
 				AEDD2A9A1CDE5A350088AD75 /* Bullet_Red.png in Resources */,
+				AE6B2ADB1CE74E3100E47554 /* Chocolate Covered Raindrops.ttf in Resources */,
+				AECEF4BC1CE866D1005C770C /* starDull.png in Resources */,
+				AE5ACD001CE4F03B00038A11 /* redBar.png in Resources */,
 				AE5ACCF61CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf in Resources */,
+				AE6B2AD91CE74E3100E47554 /* Chocolate Covered Raindrops BOLD.ttf in Resources */,
 				AEAA32EB1CDD0E0C002ADAAD /* Assets.xcassets in Resources */,
 				AEAA32E61CDD0E0C002ADAAD /* Main.storyboard in Resources */,
 			);
@@ -312,13 +357,15 @@
 				AE5BB1D01CE33F770079F0EA /* TaskGroupsDA.swift in Sources */,
 				AEAA32E31CDD0E0C002ADAAD /* ViewController.swift in Sources */,
 				AE5BB1CE1CE33DE60079F0EA /* TaskGroupsVM.swift in Sources */,
+				AE5ACD041CE4F4C200038A11 /* GroupDisplayCell.swift in Sources */,
 				AEEB87191CE0F3EE00BE71BE /* TaskSortTypes.swift in Sources */,
 				AEEB87141CDFC35400BE71BE /* TaskVM.swift in Sources */,
 				AEAA32E11CDD0E0C002ADAAD /* AppDelegate.swift in Sources */,
 				AE6373C71CDDD9E900C630EA /* ViewAThingVC.swift in Sources */,
 				AEDD2A881CDE150A0088AD75 /* UIColorExtension.swift in Sources */,
 				AEAA32E91CDD0E0C002ADAAD /* ThingsToDo.xcdatamodeld in Sources */,
-				AEAA32FA1CDD1056002ADAAD /* Tasks.swift in Sources */,
+				AEAA32FA1CDD1056002ADAAD /* TasksExtension.swift in Sources */,
+				AE6BADBC1CE7977B0058979F /* Tasks.swift in Sources */,
 				AE5BB1DF1CE479880079F0EA /* MyNotificationCenter.swift in Sources */,
 				AEEB87231CE10BCC00BE71BE /* PreloadData.swift in Sources */,
 				AEDD2A8A1CDE24C80088AD75 /* NSDateExtension.swift in Sources */,
@@ -334,6 +381,7 @@
 				AE5BB1DA1CE3AF330079F0EA /* StringExtension.swift in Sources */,
 				AEEB871B1CE1042500BE71BE /* AppSettings.swift in Sources */,
 				AE5BB1CC1CE33D360079F0EA /* TaskGroups.swift in Sources */,
+				AE6BADB01CE755BD0058979F /* TaskDisplayCell.swift in Sources */,
 				AEDD2A9C1CDE5ED30088AD75 /* TaskStatusEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

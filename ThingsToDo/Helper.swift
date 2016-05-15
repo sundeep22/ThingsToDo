@@ -10,6 +10,12 @@ import UIKit
 
 struct MyUIHelper {
     
+    static func CreateUIColorFromCodes(red: Float, green: Float, blue: Float, alpha: Float) -> UIColor
+    {
+        
+        return UIColor(colorLiteralRed: red/255, green: green/255, blue: blue/255, alpha: alpha)
+    }
+    
     static func ShowError(sender: UIViewController, userMessage: String?)
     {
         let alertController = UIAlertController(title: "Error", message:
@@ -61,5 +67,74 @@ struct MyUIHelper {
         let date = calendar.nextDateAfterDate(today, matchingComponents: nextDateComponent, options: direction.calendarOptions)
         return date!
     }
+    
+    static func GetDayOrMonth(date: NSDate) -> String
+    {
+        var returnValue = ""
+        let startDate = MyUIHelper.get(.Previous, "Sunday", considerToday: true)
+        let endDate = MyUIHelper.get(.Next, "Saturday", considerToday: true)
+        
+        let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        
+        
+        
+        let startTime = cal.startOfDayForDate(startDate)
+        let endTime = cal.dateBySettingHour(23, minute: 59, second: 59, ofDate: endDate, options: NSCalendarOptions.MatchNextTime)
+        
+        if(date > startTime && date < endTime)
+        {
+            //get 3 char week here
+            
+       
+            let dayTimePeriodFormatter = NSDateFormatter()
+            dayTimePeriodFormatter.dateFormat = "EEE"
+            
+            returnValue = dayTimePeriodFormatter.stringFromDate(date)
+
+        }
+        else
+        {
+            let dayTimePeriodFormatter = NSDateFormatter()
+            dayTimePeriodFormatter.dateFormat = "MMM dd"
+            
+            returnValue = dayTimePeriodFormatter.stringFromDate(date)
+        }
+        return returnValue
+    }
+    
+    static func GetTimeOrDay(date: NSDate) -> String
+    {
+        var returnValue = ""
+        let startDate = MyUIHelper.get(.Previous, "Sunday", considerToday: true)
+        let endDate = MyUIHelper.get(.Next, "Saturday", considerToday: true)
+        
+        let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        
+        
+        
+        let startTime = cal.startOfDayForDate(startDate)
+        let endTime = cal.dateBySettingHour(23, minute: 59, second: 59, ofDate: endDate, options: NSCalendarOptions.MatchNextTime)
+        
+        if(date > startTime && date < endTime)
+        {
+            //get 3 char week here
+            
+            
+            let dayTimePeriodFormatter = NSDateFormatter()
+            dayTimePeriodFormatter.dateFormat = "h:mm a"
+            
+            returnValue = dayTimePeriodFormatter.stringFromDate(date)
+            
+        }
+        else
+        {
+            let dayTimePeriodFormatter = NSDateFormatter()
+            dayTimePeriodFormatter.dateFormat = "yyyy"
+            
+            returnValue = dayTimePeriodFormatter.stringFromDate(date)
+        }
+        return returnValue
+    }
+
 
 }

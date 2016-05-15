@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.allTasks = self.GetTasks(TaskSortTypes.DateCreatedDescending, filter: "")
         
-        self.tblViewTasks.rowHeight = 70.0
+        //self.tblViewTasks.rowHeight = 70.0
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         
@@ -203,11 +203,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let newCell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "taskTableCell");
+//        let newCell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "taskTableCell");
+
+        
+        let newCell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskDisplayCell
+        
         newCell.detailTextLabel?.textColor = UIColor.darkGrayColor()
-        newCell.textLabel?.textColor = UIColor.redColor()
-        //newCell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0);
-        newCell.textLabel?.font = UIFont(name: "DJBMyBoyfriend'sHandwriting", size: 20.0)
+//        newCell.textLabel?.textColor = UIColor.redColor()
+//        //newCell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0);
+//        newCell.textLabel?.font = UIFont(name: "DJBMyBoyfriend'sHandwriting", size: 20.0)
         
         let taskDetail: TaskVM
         if searchController.active && searchController.searchBar.text != "" {
@@ -218,32 +222,49 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if indexPath.row % 2 != 0
         {
+            newCell.viewForDateAndtime.backgroundColor = UIColor(hexString: "#F6F6F6F6")
             newCell.backgroundColor = UIColor(hexString: "#F6F6F6F6")
         }
         else
         {
             newCell.backgroundColor = UIColor.whiteColor()
+            newCell.viewForDateAndtime.backgroundColor = UIColor.whiteColor()
+
         }
  
-        var imageToShow:String;
+        //var imageToShow:String;
         
         if taskDetail.taskStatusId == TaskStatusEnum.Pending.rawValue
         {
-            imageToShow = "Bullet_Red.png";
+            newCell.taskStatusIndicator.backgroundColor = UIColor.redColor()
+            //imageToShow = "Bullet_Red.png";
         }
         else
         {
-            imageToShow = "Bullet_Green.png";
+            newCell.taskStatusIndicator.backgroundColor = UIColor.greenColor()
+            //imageToShow = "Bullet_Green.png";
         }
         
         
-        let image : UIImage? = UIImage(named: imageToShow)
+//        let image : UIImage? = UIImage(named: imageToShow)
+//        
+//        newCell.imageView?.image = image;
+        newCell.lblTaskName.text = taskDetail.taskTitle;
+        newCell.lblDeadlineDay.text = MyUIHelper.GetDayOrMonth(taskDetail.taskDeadline!)
+        newCell.lblDeadlineTime.text = MyUIHelper.GetTimeOrDay(taskDetail.taskDeadline!)
+        newCell.taskUniqueID = taskDetail.uniqueIdentifier
+        newCell.delegate = self
         
-        newCell.imageView?.image = image;
-        newCell.textLabel!.text = taskDetail.taskTitle;
-        newCell.detailTextLabel?.numberOfLines = 3;
-        newCell.detailTextLabel?.text = taskDetail.taskDescription;
-        newCell.detailTextLabel?.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+        if taskDetail.isStarred == 0
+        {
+            newCell.btnStarIt.setImage(UIImage(named: "starDull.png"), forState: UIControlState.Normal)
+        }
+        else
+        {
+            newCell.btnStarIt.setImage(UIImage(named: "starLit.png"), forState: UIControlState.Normal)
+        }
+        newCell.task = taskDetail
+        
         return newCell;
     }
     
@@ -333,7 +354,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
             if sortOrder == .DateCreatedDescending && uiSwitchShowCompleted.on
             {
-                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!).sort({ ($0.taskCreatedOn?.isGreaterThanDate($1.taskCreatedOn!))! })
+                
+                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!).sort({ ($0.isStarred > $1.isStarred) })
             }
             else if sortOrder == .DateCreatedDescending && !uiSwitchShowCompleted.on
             {
@@ -412,7 +434,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 }
 
-extension ViewController: UISearchResultsUpdating {
+
+protocol ViewControllerProtocol : class {    // 'class' means only class types can implement it
+    func updateAndRefreshData()
+}
+
+extension ViewController: UISearchResultsUpdating, ViewControllerProtocol {
+    
+    func updateAndRefreshData() {
+        self.allTasks = self.GetTasks(TaskSortTypes.DateCreatedDescending, filter: "")
+        self.tblViewTasks.reloadData()
+    }
+    
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
