@@ -25,6 +25,9 @@ class ViewAThingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        
         btnMarkAsCompletedTask.backgroundColor = UIColor.init(red: 0, green: 153/255, blue: 76/255, alpha: 1)
         btnMarkAsCompletedTask.layer.cornerRadius = 5
         btnMarkAsCompletedTask.layer.borderWidth = 1

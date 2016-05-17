@@ -135,6 +135,30 @@ struct MyUIHelper {
         }
         return returnValue
     }
+    
+    static func GetHeaderBlue2() -> UIColor
+    {
+        return CreateUIColorFromCodes(27, green: 73, blue: 101, alpha: 1.0)
+    }
+    
+    
+    static func GetHeaderBlue1() -> UIColor
+    {
+        return CreateUIColorFromCodes(2, green: 100, blue: 154, alpha: 1.0)
+    }
+    
+    
+        static func GetThemeRed() -> UIColor
+    {
+        return MyUIHelper.CreateUIColorFromCodes(
+            193, green: 73, blue: 58, alpha: 1)
+
+    }
+    
+    static func GetThemeGreen() -> UIColor
+    {
+        return MyUIHelper.CreateUIColorFromCodes(2, green: 195, blue: 154, alpha: 1)
+    }
 
 
 }

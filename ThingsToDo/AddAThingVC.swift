@@ -22,7 +22,9 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.hideKeyboardWhenTappedAround()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+
+        self.hideKeyboardWhenTappedAround()
         txtViewDescription.delegate = self
         txtBoxTitle.delegate = self
         txtViewDescription.text = "Task Desciption (Optional)"
@@ -103,7 +105,11 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
         var currentTask = TaskVM()
         
         currentTask.taskTitle = txtBoxTitle.text;
-        currentTask.taskDescription = txtViewDescription.text;
+        
+        if(txtViewDescription.textColor != UIColor.lightGrayColor() && txtViewDescription.text != "Task Desciption (Optional)")
+        {
+            currentTask.taskDescription = txtViewDescription.text;
+        }
         currentTask.taskDeadline = dtPickerCompleteBy.date;
         currentTask.taskStatusId = TaskStatusEnum.Pending.rawValue;
         currentTask.isStarred = 0

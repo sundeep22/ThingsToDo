@@ -38,6 +38,7 @@
 		AEAA32FE1CDD1612002ADAAD /* AddAThingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA32FD1CDD1612002ADAAD /* AddAThingVC.swift */; };
 		AECEF4BC1CE866D1005C770C /* starDull.png in Resources */ = {isa = PBXBuildFile; fileRef = AECEF4BA1CE866D1005C770C /* starDull.png */; };
 		AECEF4BD1CE866D1005C770C /* starLit.png in Resources */ = {isa = PBXBuildFile; fileRef = AECEF4BB1CE866D1005C770C /* starLit.png */; };
+		AECEF4BF1CE90964005C770C /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = AECEF4BE1CE90964005C770C /* SplashScreen.png */; };
 		AEDD2A881CDE150A0088AD75 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD2A871CDE150A0088AD75 /* UIColorExtension.swift */; };
 		AEDD2A8A1CDE24C80088AD75 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD2A891CDE24C80088AD75 /* NSDateExtension.swift */; };
 		AEDD2A8F1CDE29FA0088AD75 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD2A8E1CDE29FA0088AD75 /* Helper.swift */; };
@@ -90,6 +91,7 @@
 		AEAA32FD1CDD1612002ADAAD /* AddAThingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAThingVC.swift; sourceTree = "<group>"; };
 		AECEF4BA1CE866D1005C770C /* starDull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starDull.png; sourceTree = "<group>"; };
 		AECEF4BB1CE866D1005C770C /* starLit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starLit.png; sourceTree = "<group>"; };
+		AECEF4BE1CE90964005C770C /* SplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreen.png; sourceTree = "<group>"; };
 		AEDD2A871CDE150A0088AD75 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		AEDD2A891CDE24C80088AD75 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		AEDD2A8E1CDE29FA0088AD75 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		AEDD2A921CDE52B20088AD75 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				AECEF4BE1CE90964005C770C /* SplashScreen.png */,
 				AECEF4BA1CE866D1005C770C /* starDull.png */,
 				AECEF4BB1CE866D1005C770C /* starLit.png */,
 				AE6B2AD61CE74E3100E47554 /* Chocolate Covered Raindrops BOLD.ttf */,
@@ -342,6 +345,7 @@
 				AE5ACCF61CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf in Resources */,
 				AE6B2AD91CE74E3100E47554 /* Chocolate Covered Raindrops BOLD.ttf in Resources */,
 				AEAA32EB1CDD0E0C002ADAAD /* Assets.xcassets in Resources */,
+				AECEF4BF1CE90964005C770C /* SplashScreen.png in Resources */,
 				AEAA32E61CDD0E0C002ADAAD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

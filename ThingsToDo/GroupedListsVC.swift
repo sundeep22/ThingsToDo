@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate {
     
     let taskGroupsDA = TaskGroupsDA()
     var allTaskGroups = [TaskGroupsVM]()
@@ -146,7 +146,7 @@ class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
-        header.contentView.backgroundColor = MyUIHelper.CreateUIColorFromCodes(27, green: 73, blue: 101, alpha: 1.0)
+        header.contentView.backgroundColor = MyUIHelper.GetHeaderBlue1()
         header.textLabel!.textColor = UIColor.whiteColor() //make the text white
         //header.alpha = 0.8 //make the header transparent
     }
@@ -220,12 +220,105 @@ class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelega
         {
             cell.lblTitle.text = allTaskGroups[indexPath.row].taskGroupName
         }
-
+        
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = MyUIHelper.CreateUIColorFromCodes(193, green: 73, blue: 58, alpha: 1)
+        cell.selectedBackgroundView = bgColorView
+        
+        //cell.selectedBackgroundView?.backgroundColor =
         
         return cell;
         
     }
     
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool{
+        return indexPath.section == 1 ? true : false
+    }
+    
+    func DeleteTaskGroupAndRefreshTable(taskGroup: TaskGroupsVM)
+    {
+        let refreshAlert = UIAlertController(title: taskGroup.taskGroupName, message: "Deleting a Task Group will delete all Tasks Associated with it. Do you wish to proceed?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+            self.taskGroupsDA.DeleteATaskGroup(taskGroup);
+            //MyNotificationCenter.DeleteNotificationsForTaskVM(taskVM)
+            self.RefreshAllTaskGroups()
+            self.tblViewTaskGroups.reloadData()
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .Destructive, handler: { (action: UIAlertAction!) in
+            self.tblViewTaskGroups.setEditing(false, animated: true)
+        }))
+        
+
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+    }
+
+    func MarkAllTasksAsDone(taskGroup: TaskGroupsVM)
+    {
+        let refreshAlert = UIAlertController(title: taskGroup.taskGroupName, message: "Are you sure you want to mark all tasks under this group as completed?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+            self.taskGroupsDA.MarkAllTasksInTaskGroup(taskGroup, status: TaskStatusEnum.Completed);
+            //MyNotificationCenter.DeleteNotificationsForTaskVM(taskVM)
+            self.RefreshAllTaskGroups()
+            self.tblViewTaskGroups.reloadData()
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .Destructive, handler: { (action: UIAlertAction!) in
+            self.tblViewTaskGroups.setEditing(false, animated: true)
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+    }
+
+    
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        if(indexPath.section == 1)
+        {
+            var taskGroup: TaskGroupsVM
+            
+            taskGroup = allTaskGroups[indexPath.row]
+
+            
+            
+            
+            let delete = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+                self.DeleteTaskGroupAndRefreshTable(taskGroup)
+            })
+            delete.backgroundColor = MyUIHelper.CreateUIColorFromCodes(193, green: 73, blue: 58, alpha: 1)
+
+            
+            var tableViewRowAction : UITableViewRowAction?
+            
+            if taskGroupsDA.DoesGroupHavePendingTasks(taskGroup)
+            {
+                tableViewRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "All Done" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+                self.MarkAllTasksAsDone(taskGroup)
+                })
+                tableViewRowAction!.backgroundColor = MyUIHelper.CreateUIColorFromCodes(2, green: 195, blue: 154, alpha: 1)
+            }
+            
+            
+            if(tableViewRowAction == nil)
+            {
+                return [delete]
+            }
+            else
+            {
+                return [delete, tableViewRowAction!]
+            }
+            
+        }
+        return nil
+    }
+
     
     func colorForIndex(index: Int) -> UIColor
     {
@@ -247,15 +340,7 @@ class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelega
         if(segue.identifier == "segueToTasksOfGroup") {
             let currentIndex = sender as! NSIndexPath;
             
-//            let currentTask: TaskVM
-//            if searchController.active && searchController.searchBar.text != "" {
-//                currentTask = filteredTasks[currentIndex]
-//            } else {
-//                currentTask = allTasks[currentIndex]
-//            }
-            
-//            let currentItem = currentTask;
-            
+
             let targetController = (segue.destinationViewController as! ViewController)
             
             if(currentIndex.section == 0)

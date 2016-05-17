@@ -12,6 +12,8 @@ import UIKit
 
 struct TaskGroupsDA
 {
+    let tasksDA = TasksDA()
+    
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     func GetEmptyTaskGroup() -> TaskGroups
@@ -148,7 +150,13 @@ struct TaskGroupsDA
         
         let taskGroup = managedContext.objectWithID(taskGroupToDelete.objectID as! NSManagedObjectID) as! TaskGroups
         
+        for task in taskGroup.tasks!
+        {
+            tasksDA.DeleteATask(task as! Tasks)
+        }
+        
         managedContext.deleteObject(taskGroup)
+
         
         do {
             try managedContext.save()
@@ -160,4 +168,41 @@ struct TaskGroupsDA
         
         
     }
+    
+    func DoesGroupHavePendingTasks(taskGroup: TaskGroupsVM) -> Bool
+    {
+        var containsPending = false
+        
+        let managedContext = self.appDelegate.managedObjectContext
+        
+        let taskGroup = managedContext.objectWithID(taskGroup.objectID as! NSManagedObjectID) as! TaskGroups
+        
+        for task in taskGroup.tasks!
+        {
+            if(task as! Tasks).taskStatusId == TaskStatusEnum.Pending.rawValue
+            {
+                containsPending = true
+                break
+            }
+        }
+        return containsPending
+        
+    }
+
+    func MarkAllTasksInTaskGroup(taskGroupToDelete: TaskGroupsVM, status: TaskStatusEnum)
+    {
+        let managedContext = self.appDelegate.managedObjectContext
+        
+        let taskGroup = managedContext.objectWithID(taskGroupToDelete.objectID as! NSManagedObjectID) as! TaskGroups
+        
+        for task in taskGroup.tasks!
+        {
+            let localTask = task as! Tasks
+            localTask.taskStatusId = status.rawValue
+            
+            tasksDA.UpdateTaskInDB(localTask)
+        }
+        
+    }
+
 }

@@ -14,6 +14,7 @@ class TaskDisplayCell: UITableViewCell {
     var task: TaskVM = TaskVM()
     var taskUniqueID: String?;
     let tasksDA = TasksDA()
+
     
     @IBOutlet weak var viewForDateAndtime: UIView!
     @IBOutlet weak var taskStatusIndicator: UIView!
@@ -26,15 +27,6 @@ class TaskDisplayCell: UITableViewCell {
     
     static let reuseIdentifier = "taskCell"
     
-//    func doSomethingWhenTapped() {
-//        // TODO: actually set up the cell so this method is called when tapped
-//        if let parentSearchData = self.delegate?.updateAndRefreshData() {
-//            
-//                
-//        } else {
-//            print("Something is wrong, this cell's delegate wasn't set...")
-//        }
-//    }
     
     
     @IBAction func btnStarCurrentTask(sender: UIButton) {
@@ -57,8 +49,6 @@ class TaskDisplayCell: UITableViewCell {
         //doSomethingWhenTapped()
     }
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     
@@ -69,5 +59,5 @@ class TaskDisplayCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+   
 }

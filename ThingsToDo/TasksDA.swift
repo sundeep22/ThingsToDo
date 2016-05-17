@@ -46,7 +46,23 @@ struct TasksDA
         
         return true;
     }
-    
+
+    func UpdateTaskInDB(task: Tasks) -> Bool
+    {
+       
+        let managedContext = self.appDelegate.managedObjectContext
+        
+        do {
+            try managedContext.save()
+            print("Congratulations!!")
+            
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        return true;
+    }
+
 
     func StoreTaskInDB(taskVM: TaskVM) -> NSManagedObjectID
     {
@@ -169,6 +185,23 @@ struct TasksDA
         let task = managedContext.objectWithID(taskToDelete.objectID as! NSManagedObjectID) as! Tasks
         
         managedContext.deleteObject(task)
+        
+        do {
+            try managedContext.save()
+            print("Deleted Successfully!")
+        } catch {
+            let saveError = error as NSError
+            print(saveError)
+        }
+        
+        
+    }
+    
+    func DeleteATask(taskToDelete: Tasks)
+    {
+        let managedContext = self.appDelegate.managedObjectContext
+        
+        managedContext.deleteObject(taskToDelete)
         
         do {
             try managedContext.save()

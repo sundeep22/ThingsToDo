@@ -32,6 +32,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         print("Received \(currentTaskGroup)")
         
+        
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.whiteColor()
         self.SetShowCompletedTasksSwitch()
         
         self.allTasks = self.GetTasks(TaskSortTypes.DateCreatedDescending, filter: "")
@@ -84,7 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
-        header.contentView.backgroundColor = MyUIHelper.CreateUIColorFromCodes(27, green: 73, blue: 101, alpha: 1.0)
+        header.contentView.backgroundColor = MyUIHelper.GetHeaderBlue1()
         header.textLabel!.textColor = UIColor.whiteColor() //make the text white
         //header.alpha = 0.8 //make the header transparent
     }
@@ -203,7 +205,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
                 self.MarkTaskAsDone(taskDetail);
         })
-            markAsDone.backgroundColor = UIColor.blueColor()
+            markAsDone.backgroundColor = MyUIHelper.CreateUIColorFromCodes(2, green: 195, blue: 154, alpha: 1)
         
             return [delete, markAsDone]
         }
@@ -240,18 +242,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             newCell.viewForDateAndtime.backgroundColor = UIColor.whiteColor()
 
         }
- 
-        //var imageToShow:String;
         
         if taskDetail.taskStatusId == TaskStatusEnum.Pending.rawValue
         {
-            newCell.taskStatusIndicator.backgroundColor = UIColor.redColor()
-            //imageToShow = "Bullet_Red.png";
+            newCell.taskStatusIndicator.backgroundColor = MyUIHelper.CreateUIColorFromCodes(193, green: 73, blue: 58, alpha: 1)
         }
         else
         {
-            newCell.taskStatusIndicator.backgroundColor = UIColor.greenColor()
-            //imageToShow = "Bullet_Green.png";
+            newCell.taskStatusIndicator.backgroundColor = MyUIHelper.CreateUIColorFromCodes(2, green: 195, blue: 154, alpha: 1)
         }
         
         
@@ -263,6 +261,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         newCell.lblDeadlineTime.text = MyUIHelper.GetTimeOrDay(taskDetail.taskDeadline!)
         newCell.taskUniqueID = taskDetail.uniqueIdentifier
         newCell.delegate = self
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = MyUIHelper.CreateUIColorFromCodes(193, green: 73, blue: 58, alpha: 1)
+        newCell.selectedBackgroundView = bgColorView
+
         
         if taskDetail.isStarred == 0
         {
