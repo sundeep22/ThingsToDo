@@ -148,7 +148,7 @@ struct MyUIHelper {
     }
     
     
-        static func GetThemeRed() -> UIColor
+    static func GetThemeRed() -> UIColor
     {
         return MyUIHelper.CreateUIColorFromCodes(
             193, green: 73, blue: 58, alpha: 1)

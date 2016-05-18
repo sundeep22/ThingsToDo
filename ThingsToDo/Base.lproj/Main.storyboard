@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Chocolate Covered Raindrops.ttf">
+        <mutableArray key="Chocolate Covered Raindrops BOLD.ttf">
             <string>ChocolateCoveredRaindrops</string>
             <string>ChocolateCoveredRaindrops</string>
             <string>ChocolateCoveredRaindrops</string>
@@ -303,7 +303,7 @@
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CPW-2r-1vq">
                                                 <rect key="frame" x="20" y="90" width="560" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPC-tW-FIu">
@@ -322,18 +322,37 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                                             </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdk-U9-nuf">
-                                                <rect key="frame" x="20" y="293" width="103" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="T0o-OP-JY4">
-                                                <rect key="frame" x="20" y="322" width="560" height="216"/>
-                                                <date key="date" timeIntervalSinceReferenceDate="484251860.67374402">
-                                                    <!--2016-05-06 18:24:20 +0000-->
-                                                </date>
-                                            </datePicker>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="59E-8F-gH8" userLabel="ShowDateView">
+                                                <rect key="frame" x="20" y="322" width="560" height="42"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgi-ph-s1d">
+                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeN-Fi-2hF">
+                                                        <rect key="frame" x="208" y="4" width="17" height="22"/>
+                                                        <color key="backgroundColor" red="0.75686274509803919" green="0.28627450980392155" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                        <state key="normal" title="X">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="clearDate_Click:" destination="YDU-Oz-lhz" eventType="touchUpInside" id="aXh-la-5zY"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.91764705882352937" green="0.95294117647058818" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJ0-aZ-oOK">
+                                                <rect key="frame" x="20" y="293" width="193" height="32"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <state key="normal" title="Set a Deadline (Optional)"/>
+                                                <connections>
+                                                    <action selector="selectDeadline_Click:" destination="YDU-Oz-lhz" eventType="touchUpInside" id="dOk-YJ-BE6"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.91764705882352937" green="0.95294117647058818" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -343,9 +362,6 @@
                                             <constraint firstAttribute="trailing" secondItem="CPW-2r-1vq" secondAttribute="trailing" constant="20" id="8uM-62-NIB"/>
                                             <constraint firstItem="JPC-tW-FIu" firstAttribute="top" secondItem="ST9-6Y-xJC" secondAttribute="top" constant="128" id="ATw-eX-bL1"/>
                                             <constraint firstItem="hjv-ZK-D6G" firstAttribute="top" secondItem="ST9-6Y-xJC" secondAttribute="top" constant="20" id="BQJ-aL-pNX"/>
-                                            <constraint firstItem="Pdk-U9-nuf" firstAttribute="top" secondItem="ST9-6Y-xJC" secondAttribute="top" constant="293" id="HcY-lr-klM"/>
-                                            <constraint firstAttribute="trailing" secondItem="T0o-OP-JY4" secondAttribute="trailing" constant="20" id="JJO-rb-UmQ"/>
-                                            <constraint firstAttribute="bottom" secondItem="T0o-OP-JY4" secondAttribute="bottom" constant="51" id="LiX-B1-d2F"/>
                                             <constraint firstItem="KSK-q7-5dP" firstAttribute="top" secondItem="ST9-6Y-xJC" secondAttribute="top" constant="157" id="Nic-Yh-ZwB"/>
                                             <constraint firstAttribute="bottom" secondItem="CPW-2r-1vq" secondAttribute="bottom" constant="469" id="P1b-zP-pC0"/>
                                             <constraint firstAttribute="bottom" secondItem="JPC-tW-FIu" secondAttribute="bottom" constant="440" id="Sqp-d9-2f7"/>
@@ -353,13 +369,9 @@
                                             <constraint firstItem="pyt-V2-wI3" firstAttribute="leading" secondItem="ST9-6Y-xJC" secondAttribute="leading" constant="20" id="TY5-kR-wgJ"/>
                                             <constraint firstItem="KSK-q7-5dP" firstAttribute="leading" secondItem="ST9-6Y-xJC" secondAttribute="leading" constant="20" id="UTh-cB-0vl"/>
                                             <constraint firstItem="hjv-ZK-D6G" firstAttribute="centerX" secondItem="ST9-6Y-xJC" secondAttribute="centerX" id="ZC6-3z-Y2Q"/>
-                                            <constraint firstAttribute="bottom" secondItem="Pdk-U9-nuf" secondAttribute="bottom" constant="275" id="duM-F2-vYa"/>
-                                            <constraint firstItem="T0o-OP-JY4" firstAttribute="top" secondItem="ST9-6Y-xJC" secondAttribute="top" constant="322" id="jjE-f7-11x"/>
                                             <constraint firstAttribute="bottom" secondItem="pyt-V2-wI3" secondAttribute="bottom" constant="507" id="lPG-oK-Afo"/>
-                                            <constraint firstItem="T0o-OP-JY4" firstAttribute="leading" secondItem="ST9-6Y-xJC" secondAttribute="leading" constant="20" id="lcY-l4-fIF"/>
                                             <constraint firstItem="pyt-V2-wI3" firstAttribute="top" secondItem="ST9-6Y-xJC" secondAttribute="top" constant="61" id="mZt-KV-5uH"/>
                                             <constraint firstItem="CPW-2r-1vq" firstAttribute="top" secondItem="ST9-6Y-xJC" secondAttribute="top" constant="90" id="pxH-qM-hdb"/>
-                                            <constraint firstItem="Pdk-U9-nuf" firstAttribute="leading" secondItem="ST9-6Y-xJC" secondAttribute="leading" constant="20" id="r82-tF-z83"/>
                                             <constraint firstAttribute="bottom" secondItem="hjv-ZK-D6G" secondAttribute="bottom" constant="533" id="wab-vw-kDM"/>
                                         </constraints>
                                     </view>
@@ -393,7 +405,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="650"/>
                     <connections>
-                        <outlet property="dtPickerCompleteBy" destination="T0o-OP-JY4" id="Teo-F6-2J7"/>
+                        <outlet property="ShowDateView" destination="59E-8F-gH8" id="Gak-s3-kIm"/>
+                        <outlet property="btnClearDate" destination="DeN-Fi-2hF" id="eCa-O3-4nS"/>
+                        <outlet property="lblSelectedDate" destination="vgi-ph-s1d" id="bFG-v1-jRh"/>
                         <outlet property="scrollView" destination="F7L-Ja-17h" id="4VO-Gy-fG8"/>
                         <outlet property="txtBoxTitle" destination="CPW-2r-1vq" id="aAu-zN-0vr"/>
                         <outlet property="txtViewDescription" destination="KSK-q7-5dP" id="U5J-g7-bH5"/>
@@ -402,6 +416,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5F-s7-ruY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1719" y="360"/>
+        </scene>
+        <!--Pop Over View Controller-->
+        <scene sceneID="WfZ-Jk-DzQ">
+            <objects>
+                <viewController storyboardIdentifier="SelectDeadline_Scene" automaticallyAdjustsScrollViewInsets="NO" id="8cj-gj-WRG" customClass="PopOverViewController" customModule="ThingsToDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dqc-TY-kKE"/>
+                        <viewControllerLayoutGuide type="bottom" id="jpX-5y-tH8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="upU-If-ViD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0x-dH-hmv">
+                                <rect key="frame" x="0.0" y="216" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.75686274509803919" green="0.28627450980392155" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <barButtonItem title="Select" width="306" id="jh2-3h-heG">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="SelectDate_Click:" destination="8cj-gj-WRG" id="xhc-3y-wsR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="csw-wv-tym">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="485209450.85838699">
+                                    <!--2016-05-17 20:24:10 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="0.93904194080000003" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="260"/>
+                    <connections>
+                        <outlet property="dateTimeSelected" destination="csw-wv-tym" id="qKC-Ye-ce1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5wi-x6-FMk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2236" y="295"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Spw-DE-XPr">

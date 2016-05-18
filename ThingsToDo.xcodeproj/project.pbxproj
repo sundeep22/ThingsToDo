@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AE2B2D301CE4C998009FC5CC /* MyDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2B2D2F1CE4C998009FC5CC /* MyDatePicker.swift */; };
+		AE3770C51CEB904C00BFE601 /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3770C41CEB904C00BFE601 /* PopOverViewController.swift */; };
 		AE5ACCF61CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE5ACCF51CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf */; };
 		AE5ACCFD1CE4F03B00038A11 /* blueBar.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5ACCF71CE4F03B00038A11 /* blueBar.png */; };
 		AE5ACCFE1CE4F03B00038A11 /* greenBar.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5ACCF81CE4F03B00038A11 /* greenBar.png */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		AE2B2D2F1CE4C998009FC5CC /* MyDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDatePicker.swift; sourceTree = "<group>"; };
+		AE3770C41CEB904C00BFE601 /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		AE5ACCF51CE4CE9900038A11 /* DJB My Boyfriends Handwriting.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DJB My Boyfriends Handwriting.ttf"; sourceTree = "<group>"; };
 		AE5ACCF71CE4F03B00038A11 /* blueBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueBar.png; sourceTree = "<group>"; };
 		AE5ACCF81CE4F03B00038A11 /* greenBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenBar.png; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				AE2B2D2F1CE4C998009FC5CC /* MyDatePicker.swift */,
 				AE5ACD031CE4F4C200038A11 /* GroupDisplayCell.swift */,
 				AE6BADAF1CE755BD0058979F /* TaskDisplayCell.swift */,
+				AE3770C41CEB904C00BFE601 /* PopOverViewController.swift */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				AEEB87141CDFC35400BE71BE /* TaskVM.swift in Sources */,
 				AEAA32E11CDD0E0C002ADAAD /* AppDelegate.swift in Sources */,
 				AE6373C71CDDD9E900C630EA /* ViewAThingVC.swift in Sources */,
+				AE3770C51CEB904C00BFE601 /* PopOverViewController.swift in Sources */,
 				AEDD2A881CDE150A0088AD75 /* UIColorExtension.swift in Sources */,
 				AEAA32E91CDD0E0C002ADAAD /* ThingsToDo.xcdatamodeld in Sources */,
 				AEAA32FA1CDD1056002ADAAD /* TasksExtension.swift in Sources */,

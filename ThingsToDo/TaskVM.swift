@@ -48,7 +48,7 @@ struct TaskVM
         {
             return (false, "Title is required.");
         }
-        else if self.taskDeadline!.isLessThanDate(NSDate())
+        else if self.taskDeadline != nil && self.taskDeadline!.isLessThanDate(NSDate())
         {
             return(false, "Completion date cannot be before current time.");
         }

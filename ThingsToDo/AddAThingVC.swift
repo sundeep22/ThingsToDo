@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, AddAThingVCGetDateProtocol {
 
     let da: TasksDA = TasksDA();
     let taskGroupDA = TaskGroupsDA();
@@ -17,7 +17,13 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var txtBoxTitle: UITextField!
     @IBOutlet weak var txtViewDescription: UITextView!
-    @IBOutlet weak var dtPickerCompleteBy: UIDatePicker!
+    //@IBOutlet weak var dtPickerCompleteBy: UIDatePicker!
+    @IBOutlet weak var lblSelectedDate: UILabel!
+    
+    @IBOutlet weak var btnClearDate: UIButton!
+    @IBOutlet weak var ShowDateView: UIView!
+    
+    var selectedCompleteByDate : NSDate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,27 +36,73 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
         txtViewDescription.text = "Task Desciption (Optional)"
         txtViewDescription.textColor = UIColor.lightGrayColor()
 
-        dtPickerCompleteBy.datePickerMode = UIDatePickerMode.DateAndTime;
+        self.ShowDateView.hidden = true
         
+        //dtPickerCompleteBy.datePickerMode = UIDatePickerMode.DateAndTime;
+        
+        btnClearDate.layer.cornerRadius = 5
+        btnClearDate.layer.borderWidth = 1
+        btnClearDate.layer.backgroundColor = MyUIHelper.GetThemeRed().CGColor
+        btnClearDate.layer.borderColor = MyUIHelper.GetThemeRed().CGColor
         
         
         txtBoxTitle.autocapitalizationType = UITextAutocapitalizationType.Words;
         // Do any additional setup after loading the view.
     }
     
-//    @IBAction func datePickerTapped(sender: AnyObject) {
-//        DatePickerDialog().show("DatePickerDialog", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .Date) {
-//            (date) -> Void in
-//            self.txtBoxCompleteBy.text = "\(date)"
-//        }
-//    }
+
+    func SetDate(dateSelected : NSDate)
+    {
+        print("Got Date!!")
+        self.selectedCompleteByDate = dateSelected;
+        lblSelectedDate.text = dateSelected.ToLocalStringWithFormat("MM/dd/yyyy hh:mm a")
+        self.ShowDateView.hidden = false
+
+    }
+
+    @IBAction func clearDate_Click(sender: UIButton) {
+        
+        self.selectedCompleteByDate = nil
+        lblSelectedDate.text = ""
+        self.ShowDateView.hidden = true
+        
+    }
+    @IBAction func selectDeadline_Click(sender: UIButton) {
+        
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("SelectDeadline_Scene") as! PopOverViewController
+        vc.delegate = self
+        vc.preferredContentSize = CGSize(width: 320, height: 260)
+        
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = UIModalPresentationStyle.Popover
+        
+        
+        navController.navigationBarHidden = true
+        
+        let popOver = navController.popoverPresentationController
+        popOver?.delegate = self
+        popOver?.sourceView = sender
+        popOver?.sourceRect = sender.bounds;
+        popOver?.permittedArrowDirections = UIPopoverArrowDirection.Any;
+        
+        
+        
+        
+        self.presentViewController(navController, animated: true, completion: nil)
+        
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
+    }
+    
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "\n"
         {
             textView.resignFirstResponder()
-            let point = dtPickerCompleteBy.frame;
-            scrollView.scrollRectToVisible(point, animated: true)
+//            let point = dtPickerCompleteBy.frame;
+//            scrollView.scrollRectToVisible(point, animated: true)
             return false;
         }
         
@@ -110,7 +162,7 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
         {
             currentTask.taskDescription = txtViewDescription.text;
         }
-        currentTask.taskDeadline = dtPickerCompleteBy.date;
+        currentTask.taskDeadline = self.selectedCompleteByDate;
         currentTask.taskStatusId = TaskStatusEnum.Pending.rawValue;
         currentTask.isStarred = 0
         currentTask.taskCreatedOn = NSDate();
@@ -124,7 +176,11 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
         if validationResults.valid
         {
             currentTask.objectID = da.StoreTaskInDB(currentTask);
-            MyNotificationCenter.AddNotificationForTaskVM(currentTask);
+            if(currentTask.taskDeadline != nil)
+            {
+                MyNotificationCenter.AddNotificationForTaskVM(currentTask);
+            }
+            
             NSNotificationCenter.defaultCenter().postNotificationName("loadTasks", object: nil)
             navigationController?.popViewControllerAnimated(true)
         }
@@ -134,4 +190,9 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
         }
     
     }
+}
+
+protocol AddAThingVCGetDateProtocol
+{
+    func SetDate(dateSelected : NSDate)
 }

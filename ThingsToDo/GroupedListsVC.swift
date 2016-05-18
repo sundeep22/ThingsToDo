@@ -56,6 +56,8 @@ class GroupedListsVC: UIViewController, UITableViewDataSource, UITableViewDelega
             textField.textColor = UIColor.darkGrayColor()
             //textField.borderStyle = UITextBorderStyle.Bezel
             textField.placeholder = "Task Group Name"
+            textField.autocapitalizationType = UITextAutocapitalizationType.Words
+            textField.autocorrectionType = UITextAutocorrectionType.Yes
 
         }
         

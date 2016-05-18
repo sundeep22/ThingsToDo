@@ -28,14 +28,16 @@ class ViewAThingVC: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
         
-        btnMarkAsCompletedTask.backgroundColor = UIColor.init(red: 0, green: 153/255, blue: 76/255, alpha: 1)
+        btnMarkAsCompletedTask.backgroundColor = MyUIHelper.GetThemeGreen()
         btnMarkAsCompletedTask.layer.cornerRadius = 5
         btnMarkAsCompletedTask.layer.borderWidth = 1
+        btnMarkAsCompletedTask.layer.borderColor = MyUIHelper.GetThemeGreen().CGColor
 
         
-        btnDeleteTask.backgroundColor = UIColor.init(red: 204/255, green: 0, blue: 0, alpha: 1)
+        btnDeleteTask.backgroundColor = MyUIHelper.GetThemeRed()
         btnDeleteTask.layer.cornerRadius = 5
         btnDeleteTask.layer.borderWidth = 1
+        btnDeleteTask.layer.borderColor = MyUIHelper.GetThemeRed().CGColor
 
     
         //btnMarkAsCompletedTask.layer.borderColor =
@@ -49,8 +51,10 @@ class ViewAThingVC: UIViewController {
             lblTaskTitle.text = SelectedTask!.taskTitle;
             txtViewTaskDescription.text = SelectedTask!.taskDescription;
             
+            if(SelectedTask?.taskDeadline != nil)
+            {
             lblCompleteBy.text = SelectedTask!.taskDeadline!.ToLocalStringWithFormat("MM/dd/yyyy hh:mm a")
-            
+            }
             if SelectedTask!.taskStatusId == TaskStatusEnum.Completed.rawValue
             {
                 btnMarkAsCompletedTask.hidden = true;

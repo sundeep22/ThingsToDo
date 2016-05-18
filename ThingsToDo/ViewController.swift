@@ -32,8 +32,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         print("Received \(currentTaskGroup)")
         
-        
-        self.navigationItem.backBarButtonItem?.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+
         self.SetShowCompletedTasksSwitch()
         
         self.allTasks = self.GetTasks(TaskSortTypes.DateCreatedDescending, filter: "")
@@ -257,8 +257,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        
 //        newCell.imageView?.image = image;
         newCell.lblTaskName.text = taskDetail.taskTitle;
-        newCell.lblDeadlineDay.text = MyUIHelper.GetDayOrMonth(taskDetail.taskDeadline!)
-        newCell.lblDeadlineTime.text = MyUIHelper.GetTimeOrDay(taskDetail.taskDeadline!)
+        
+        if(taskDetail.taskDeadline != nil)
+        {
+            newCell.lblDeadlineDay.text = MyUIHelper.GetDayOrMonth(taskDetail.taskDeadline!)
+            newCell.lblDeadlineTime.text = MyUIHelper.GetTimeOrDay(taskDetail.taskDeadline!)
+        }
+        else
+        {
+            newCell.lblDeadlineDay.text = ""
+            newCell.lblDeadlineTime.text = ""
+        }
+        
+        
         newCell.taskUniqueID = taskDetail.uniqueIdentifier
         newCell.delegate = self
         let bgColorView = UIView()
@@ -392,11 +403,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 if(uiSwitchShowCompleted.on)
                 {
-                    return self.da.GetAllTasks().filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                    return self.da.GetAllTasks()
+                        .filter({$0.taskDeadline != nil})
+                        .filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
                 }
                 else
                 {
-                   return self.da.GetAllTasks().filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                   return self.da.GetAllTasks()
+                    .filter({$0.taskDeadline != nil})
+                    .filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue })
+                    .filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
                 }
             }
             else if automaticTaskGroup == AutomaticTaskGroupEnum.TomorrowsTasks
@@ -411,11 +427,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 if(uiSwitchShowCompleted.on)
                 {
-                    return self.da.GetAllTasks().filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                    return self.da.GetAllTasks()
+                        .filter({$0.taskDeadline != nil})
+                        .filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
                 }
                 else
                 {
-                     return self.da.GetAllTasks().filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                     return self.da.GetAllTasks()
+                        .filter({$0.taskDeadline != nil})
+                        .filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
                 }
             }
             else if automaticTaskGroup == AutomaticTaskGroupEnum.ThisWeeksTasks
@@ -430,11 +450,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 if(uiSwitchShowCompleted.on)
                 {
-                    return self.da.GetAllTasks().filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                    return self.da.GetAllTasks()
+                        .filter({$0.taskDeadline != nil})
+                        .filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
                 }
                 else
                 {
-                    return self.da.GetAllTasks().filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                    return self.da.GetAllTasks()
+                        .filter({$0.taskDeadline != nil})
+                        .filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue })
+                        .filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
                 }
             }
         }
