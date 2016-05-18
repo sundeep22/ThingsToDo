@@ -23,12 +23,21 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, UI
     @IBOutlet weak var btnClearDate: UIButton!
     @IBOutlet weak var ShowDateView: UIView!
     
+    @IBOutlet weak var AddTaskButton: UIButton!
     var selectedCompleteByDate : NSDate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        AddTaskButton.backgroundColor = MyUIHelper.GetHeaderBlue1()
+        AddTaskButton.layer.cornerRadius = 5
+        AddTaskButton.layer.borderWidth = 1
+        AddTaskButton.layer.borderColor = MyUIHelper.GetHeaderBlue1().CGColor
+        //AddTaskButton.tintColor = UIColor.whiteColor()
+        
+
 
         self.hideKeyboardWhenTappedAround()
         txtViewDescription.delegate = self
@@ -51,6 +60,9 @@ class AddAThingVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, UI
     }
     
 
+    @IBAction func AddTask_Click(sender: UIButton) {
+        done_AddingAThing(sender)
+    }
     func SetDate(dateSelected : NSDate)
     {
         print("Got Date!!")

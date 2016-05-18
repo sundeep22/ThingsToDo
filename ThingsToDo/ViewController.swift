@@ -369,6 +369,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
     }
     
+    
+    func SortTasks(task1: TaskVM, task2: TaskVM) -> Bool
+    {
+        
+        if(task1.taskStatusId == task2.taskStatusId)
+        {
+            if(task1.isStarred == task2.isStarred)
+            {
+
+                if(task1.taskDeadline == nil) { return false }
+                if(task2.taskDeadline == nil) { return true }
+
+                return(task1.taskDeadline!.isLessThanDate(task2.taskDeadline!))
+            }
+            else
+            {
+                return task1.isStarred > task2.isStarred
+            }
+        }
+        else
+        {
+            return task1.taskStatusId < task2.taskStatusId
+        }
+    }
+    
     func GetTasks(sortOrder: TaskSortTypes, filter: String) -> [TaskVM]
     {
         if automaticTaskGroup == nil && currentTaskGroup != nil
@@ -376,16 +401,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
             if sortOrder == .DateCreatedDescending && uiSwitchShowCompleted.on
             {
-                
-                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!).sort({ ($0.isStarred > $1.isStarred) })
+                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!)
+                    .sort(SortTasks)
+            
             }
             else if sortOrder == .DateCreatedDescending && !uiSwitchShowCompleted.on
             {
-                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!).filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).sort({ ($0.taskCreatedOn?.isGreaterThanDate($1.taskCreatedOn!))! })
-            }
-            else if sortOrder == .DateCreatedAscending
-            {
-                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!).sort({ ($0.taskCreatedOn?.isLessThanDate($1.taskCreatedOn!))! })
+                return self.groupsDA.GetAllTasksForTaskGroups(currentTaskGroup!)
+                    .filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue })
+                    .sort(SortTasks)
             }
             else
             {
@@ -406,6 +430,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     return self.da.GetAllTasks()
                         .filter({$0.taskDeadline != nil})
                         .filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                        .sort(SortTasks)
                 }
                 else
                 {
@@ -413,6 +438,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     .filter({$0.taskDeadline != nil})
                     .filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue })
                     .filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                    .sort(SortTasks)
                 }
             }
             else if automaticTaskGroup == AutomaticTaskGroupEnum.TomorrowsTasks
@@ -430,12 +456,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     return self.da.GetAllTasks()
                         .filter({$0.taskDeadline != nil})
                         .filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                        .sort(SortTasks)
                 }
                 else
                 {
                      return self.da.GetAllTasks()
                         .filter({$0.taskDeadline != nil})
                         .filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue }).filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                        .sort(SortTasks)
                 }
             }
             else if automaticTaskGroup == AutomaticTaskGroupEnum.ThisWeeksTasks
@@ -453,6 +481,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     return self.da.GetAllTasks()
                         .filter({$0.taskDeadline != nil})
                         .filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                        .sort(SortTasks)
                 }
                 else
                 {
@@ -460,6 +489,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         .filter({$0.taskDeadline != nil})
                         .filter({$0.taskStatusId != TaskStatusEnum.Completed.rawValue })
                         .filter( { return $0.taskDeadline! >= startTime && $0.taskDeadline! < endTime} )
+                        .sort(SortTasks)
                 }
             }
         }
